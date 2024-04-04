@@ -1,5 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environments';
+
+//! para que quede de forma global
+import mapboxgl from 'mapbox-gl';
+
+(mapboxgl as any).accessToken = environment.mapbox_key;
+
 
 import { MapsRoutingModule } from './maps-routing.module';
 import { MiniMapComponent } from './components/mini-map/mini-map.component';
