@@ -9,6 +9,7 @@ import { FullScreenPageComponent } from './pages/full-screen-page/full-screen-pa
 import { MarkersPageComponent } from './pages/markers-page/markers-page.component';
 import { PropertiessPageComponent } from './pages/propertiess-page/propertiess-page.component';
 import { ZoomPageComponent } from './pages/zoom-page/zoom-page.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -19,11 +20,12 @@ import { ZoomPageComponent } from './pages/zoom-page/zoom-page.component';
     FullScreenPageComponent,
     MarkersPageComponent,
     PropertiessPageComponent,
-    ZoomPageComponent
+    ZoomPageComponent,
   ],
   imports: [
     CommonModule,
-    MapsRoutingModule
+    MapsRoutingModule,
+    RouterModule,
   ]
 })
 export class MapsModule { }
