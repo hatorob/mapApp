@@ -5,6 +5,7 @@
       class="list-group-item"
       [ngStyle]="{backgroundColor: market.color}"
       (dblclick)="deleteMarker(i)"
+      (click)="flyTo(market.market)"
       *ngFor="let market of markets; let i = index"
     >
       Market {{ i + 1 }}

@@ -6,6 +6,11 @@ interface MarketAndColor {
   color: string;
 }
 
+interface PlainMarket {
+  color: string;
+  lngLat: number[]
+}
+
 @Component({
   templateUrl: './markers-page.component.html',
   styleUrl: './markers-page.component.css'
@@ -46,6 +51,7 @@ export class MarkersPageComponent {
           .setLngLat( this.currentCenter )
           .addTo( this.map ); */
 
+    this.readFromLocalStorage();
   }
 
   //! crear marcador
@@ -72,7 +78,7 @@ export class MarkersPageComponent {
             .addTo( this.map );
 
     this.markets.push({color,market});
-
+    this.saveToLocalStorage();
   }
 
   //! eliminar market
@@ -80,6 +86,48 @@ export class MarkersPageComponent {
     this.markets[i].market.remove();
     this.markets.splice(i,1);
   }
+
+  //! ir a la ubicación del market
+  public flyTo = ( marker: Marker ): void => {
+    if( !this.map ) return;
+    this.map.flyTo({
+      zoom: 15,
+      center: marker.getLngLat()
+    })
+  }
+
+  //! guardar en el localStorage
+
+  public saveToLocalStorage = (): void => {
+    //console.log(this.markets);
+    const plainMarker: PlainMarket[] = this.markets.map( ({ market, color }) => {
+      return {
+        color,
+        lngLat: market.getLngLat().toArray()
+      }
+    })
+
+    localStorage.setItem('markers', JSON.stringify(plainMarker));
+
+  }
+
+  //! Leer en el localStorage
+
+  public readFromLocalStorage = (): void => {
+
+    const plainMarkersString = localStorage.getItem('markers') ?? '[]';
+    const plainMarkers: PlainMarket[] = JSON.parse( plainMarkersString );
+
+
+    plainMarkers.forEach( ({color, lngLat}) => {
+      const [ lng, lat ] = lngLat;
+      const coords = new LngLat(lng,lat);
+
+      this.addMarket(coords,color);
+    })
+
+  }
+
 
 
 }
