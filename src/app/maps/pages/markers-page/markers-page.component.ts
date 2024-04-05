@@ -1,6 +1,11 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LngLat, Map, Marker } from 'mapbox-gl';
 
+interface MarketAndColor {
+  market: Marker;
+  color: string;
+}
+
 @Component({
   templateUrl: './markers-page.component.html',
   styleUrl: './markers-page.component.css'
@@ -14,6 +19,8 @@ export class MarkersPageComponent {
    public zoom: number = 15;
    public map?: Map;
    public currentCenter: LngLat = new LngLat(-75.64, 4.53);
+
+   public markets: MarketAndColor[] = [];
 
   ngAfterViewInit(): void {
 
@@ -64,6 +71,15 @@ export class MarkersPageComponent {
           }).setLngLat( lngLat)
             .addTo( this.map );
 
+    this.markets.push({color,market});
+
   }
+
+  //! eliminar market
+  public deleteMarker = ( i: number ):void => {
+    this.markets[i].market.remove();
+    this.markets.splice(i,1);
+  }
+
 
 }
