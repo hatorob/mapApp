@@ -11,7 +11,7 @@ export class ZoomPageComponent implements AfterViewInit, OnDestroy{
   public divMap?: ElementRef;
 
   //! valor inicial del zoom
-  public zoom: number = 9;
+  public zoom: number = 15;
   public map?: Map;
   public currentCenter: LngLat = new LngLat(-75.64, 4.53);
 
