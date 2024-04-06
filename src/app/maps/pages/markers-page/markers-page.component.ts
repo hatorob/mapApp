@@ -79,6 +79,9 @@ export class MarkersPageComponent {
 
     this.markets.push({color,market});
     this.saveToLocalStorage();
+
+    // dragend
+    market.on('dragend', (event) => this.saveToLocalStorage());
   }
 
   //! eliminar market
