@@ -17,6 +17,7 @@ import { MarkersPageComponent } from './pages/markers-page/markers-page.componen
 import { PropertiessPageComponent } from './pages/propertiess-page/propertiess-page.component';
 import { ZoomPageComponent } from './pages/zoom-page/zoom-page.component';
 import { RouterModule } from '@angular/router';
+import { CounterComponent } from '../alone/components/counter/counter.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MapsRoutingModule,
     RouterModule,
+    CounterComponent,
   ]
 })
 export class MapsModule { }
