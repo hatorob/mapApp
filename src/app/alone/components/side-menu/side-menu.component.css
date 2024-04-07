@@ -3,3 +3,10 @@ li {
   transition: 0.3s all;
   background-color: rgba(255, 255, 255, 0.8);
 }
+
+ul {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+}
